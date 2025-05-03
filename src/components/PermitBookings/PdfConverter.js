@@ -454,6 +454,15 @@ function padValue(value) {
   };
 
   const handleDownload = async() => {
+
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = `${pdfData?.vehicle_no || "document"}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(pdfUrl);
+
     await dispatch().then(() => {
       navigate(0);  
     }).catch((error) => {
@@ -483,10 +492,10 @@ function padValue(value) {
   return (
     <div style={{ padding: "20px" }}>
       <button onClick={generatePdf}>Generate PDF</button>
-      {/* <button onClick={handleDownload} style={{ marginLeft: "10px" }}>Download PDF</button> */}
-      {pdfUrl && <a href={pdfUrl} download={`${pdfData?.vehicle_no}.pdf`}  onClick={handleDownload} target="_blank" style={{ marginLeft: "10px" }}>
+      {pdfUrl && <button onClick={handleDownload} style={{ marginLeft: "10px" }}>Download PDF</button>}
+      {/* {pdfUrl && <a href={pdfUrl} download={`${pdfData?.vehicle_no}.pdf`}  onClick={handleDownload} target="_blank" style={{ marginLeft: "10px" }}>
         Download PDF
-        </a>}
+        </a>} */}
       {pdfUrl && (
         <iframe
           src={pdfUrl}
