@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <div className='container mt-5'>
-        <Table striped bordered hover>
+        {/* <Table striped bordered hover>
   <thead>
     <tr>
       <th>#</th>
@@ -35,7 +35,9 @@ const Dashboard = () => {
       ))
     }
   </tbody>
-</Table>
+</Table> */}
+
+    Click on Mine Dashboard in sidebar
     </div>
   )
 }
