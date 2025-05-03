@@ -464,7 +464,7 @@ function padValue(value) {
 
     await dispatch();
 
-    html2pdf()
+    await html2pdf()
       .from(element)
       .set({
         margin: 0,
