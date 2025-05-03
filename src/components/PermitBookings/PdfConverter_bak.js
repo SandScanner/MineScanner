@@ -89,8 +89,10 @@ function padValue(value) {
     font-family: Arial, sans-serif;
     font-size: 9px;
     font-weight: 700;    
+    padding: 200px;
     width: 794px;  /* A4 width in pixels at 96 DPI */
     height: 1123px;
+    padding: 20px;
     background: white;
     box-sizing: border-box;
     }
@@ -98,14 +100,14 @@ function padValue(value) {
       font-weight: 400;
      }
     .container {
-    // height: 140.5mm;
+    height: 140.5mm;
     padding-left: 15mm;
     padding-right: 15mm;
     padding-top: 10mm;
-    // padding-bottom: 5mm;
+    padding-bottom: 5mm;
     box-sizing: border-box;
     position: relative;
-    // margin-top: 40px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     width: 794px;  /* A4 width in pixels at 96 DPI */
@@ -127,8 +129,7 @@ function padValue(value) {
     .header {
       display: flex;
       justify-content: space-between;
-      margin-top: 60px;
-      
+      margin-top: 30px;
     }
        
     .header1 {
@@ -154,7 +155,7 @@ function padValue(value) {
 
     .qr-code {
       position: absolute;
-      top: 35px;
+      top: 9px;
       right: 57px;
       width: 60px;
       height: 60px;
@@ -181,9 +182,6 @@ function padValue(value) {
   </style>
 </head>
 <body>
-    <br/>
-    <br/>
-    <br/>
   <div class="container">
     
   <!-- <img src="${Qrsample}" alt="QR Code" class="qr-code"> -->
@@ -307,20 +305,19 @@ function padValue(value) {
 
   </div>
 
-  <div class="container">
-    
-  <!-- <img src="${Qrsample}" alt="QR Code" class="qr-code"> -->
-  <div class="qr-code">
+  <div class="container1">
+    <!-- <img src="${Qrsample}" alt="QR Code" class="qr-code2"> -->
+    <div class="qr-code2">
     ${dispatchQRCode}
-  </div>
+    </div>
 
-    <div class="header">
-    
+    <div class="header1">
+      <div>
         <span>HSN Code: ${pdfData?.hsn_code}</span>
-    
-    
+      </div>
+      <div>
         <span>Date & Time Of Dispatch: ${dispatch_time}</span>
-    
+      </div>
     </div>
 
     <table>
@@ -420,10 +417,10 @@ function padValue(value) {
         <td>${pdfData?.authorized_person}</td>
       </tr>
       <tr style="height: 40px;">
-        <td>Driver Signature:</td>
+         <td>Driver Signature:</td>
         <td></td>
         <td>Signature of AD / DD:</td>
-        <td><img src="${Sign}" alt="Signature"></td>
+        <td><img src=${Sign} alt="Signature"></td>
       </tr>
     </table>
 
@@ -442,8 +439,8 @@ function padValue(value) {
       .set({
         margin: 0,
         filename: "dispatch-slip.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 1.5 },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       })
       .outputPdf("blob")
@@ -455,7 +452,7 @@ function padValue(value) {
 
   const handleDownload = async() => {
     await downloadPdf().then(() => {
-      navigate(0);  
+      // navigate(0);  
     }).catch((error) => {
       alert("Error downloading PDF" )
     });
@@ -466,15 +463,15 @@ function padValue(value) {
     const element = document.createElement("div");
     element.innerHTML = htmlContent;
 
-    await dispatch();
+    // await dispatch();
 
     await html2pdf()
       .from(element)
       .set({
         margin: 0,
         filename: `${pdfData?.vehicle_no}.pdf`,
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 1.5 },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       })
       .save();

@@ -87,7 +87,7 @@ const VehicleCheckForm = () => {
 
   if (!vehicleVerified) {
     return (
-      <div style={{  height: "100vh" }}>
+      <div>
         <div style={{ border: "1px solid #ccc", padding: "30px", width: "300px", borderRadius: "8px" }}>
           <h2>Check Vehicle</h2>
           <input
@@ -104,7 +104,7 @@ const VehicleCheckForm = () => {
   }
 
   return (
-    <div style={{ display: "flex", height: "100vh", alignItems: "center", justifyContent: "center" }}>
+    <div>
       <div style={{ border: "1px solid #ccc", padding: "30px", width: "400px", borderRadius: "8px" }}>
         <h2>Dispatch Details</h2>
         <form style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
