@@ -38,14 +38,14 @@ function App() {
         />
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route
+            {/* <Route
               path="/"
               element={
                 <AdminLayout>
                   <Dashboard />
                 </AdminLayout>
               }
-            />
+            /> */}
 
             <Route
               path="/upload"

@@ -15,7 +15,7 @@ const Login = (props) => {
 
   useEffect(() => {
     if (auth && Object.keys(auth).length !== 0) {
-      navigate("/");
+      navigate("/mineDashboard");
     }
   });
 
@@ -50,7 +50,7 @@ const Login = (props) => {
         "user",
         JSON.stringify(res.data)
       );
-      navigate("/");
+      navigate("/mineDashboard");
     } else {
       setMessage("Invalid email id or password! ");
     }

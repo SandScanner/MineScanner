@@ -99,7 +99,6 @@ const VehicleCheckForm = () => {
           />
           <button onClick={handleVehicleCheck} style={{ width: "100%", padding: "8px" }}>Check</button>
         </div>
-        <PdfConverter dispatch={handleSave} />
       </div>
     );
   }

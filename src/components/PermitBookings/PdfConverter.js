@@ -4,12 +4,14 @@ import Qrsample from "./qr-sample.png";
 import QRCode from "react-qr-code";
 // import Sign from "./sign.png";
 import { renderToString } from 'react-dom/server';
+import { redirect, useNavigate } from "react-router-dom";
 
 const PdfGenerator = ({dispatch, pdfData}) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const userData = JSON.parse(localStorage.getItem("user"));
   const [Sign, setSign] = useState(null);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchSignature = async () => {
       let result = await fetch(process.env.REACT_APP_API_URL + `/get_signatures/${userData?.mine_id}`);
@@ -121,7 +123,11 @@ function padValue(value) {
     //   position: relative;
     height: 140.5mm;
         //   border: 1px solid #000;
-          padding: 15mm;
+        //  padding: 15mm;
+        padding-left: 15mm;
+          padding-right: 15mm;
+          padding-top: 15mm;
+          padding-bottom: 5mm;
           box-sizing: border-box;
           position: relative;
           // margin-bottom: 300px;
@@ -275,7 +281,7 @@ function padValue(value) {
 </tr>
 <tr>
   <td>Required Time:</td>
-  <td>${required_time}</td>
+  <td>${pdfData?.required_time}hrs (${required_time})</td>
 </tr>
 
       <tr>
@@ -288,7 +294,7 @@ function padValue(value) {
          <td>Driver License No:</td>
         <td>${pdfData?.driver_license_no}</td>
         <td>Via:</td>
-        <td>$${pdfData?.via_route}</td>
+        <td>${pdfData?.via_route}</td>
       </tr>
       <tr>
          <td>Driver Phone No:</td>
@@ -397,7 +403,7 @@ function padValue(value) {
 </tr>
 <tr>
   <td>Required Time:</td>
-  <td>${required_time}</td>
+  <td>${pdfData?.required_time}hrs (${required_time})</td>
 </tr>
 
       <tr>
@@ -441,7 +447,7 @@ function padValue(value) {
       .set({
         margin: 0,
         filename: "dispatch-slip.pdf",
-        image: { type: "jpeg", quality: 0.98 },
+        image: { type: "jpeg", quality: 1 },
         html2canvas: { scale: 1.5 },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       })
@@ -463,11 +469,13 @@ function padValue(value) {
       .set({
         margin: 0,
         filename: `${pdfData?.vehicle_no}.pdf`,
-        image: { type: "jpeg", quality: 0.98 },
+        image: { type: "jpeg", quality: 1 },
         html2canvas: { scale: 1.5 },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       })
       .save();
+
+    window.location.reload();
   };
 
   return (

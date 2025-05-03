@@ -80,7 +80,7 @@ const MineUpload = () => {
     if(check){
         await axios.post(process.env.REACT_APP_API_URL+'/mineVehicleRegistration', {vehicleData: excelData, mine_id: quarryDetails.mine_id}).then(res => {
             toast.success('file uploaded successfully');
-            navigate('/');
+            navigate('/mineDashboard');
         })
         .catch(err => {setIsLoading(false); toast.error('uploading to server failed!')});
     }else{
