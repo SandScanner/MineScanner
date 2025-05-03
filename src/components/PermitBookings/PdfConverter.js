@@ -454,7 +454,7 @@ function padValue(value) {
   };
 
   const handleDownload = async() => {
-    await downloadPdf().then(() => {
+    await dispatch().then(() => {
       navigate(0);  
     }).catch((error) => {
       alert("Error downloading PDF" )
@@ -483,8 +483,10 @@ function padValue(value) {
   return (
     <div style={{ padding: "20px" }}>
       <button onClick={generatePdf}>Generate PDF</button>
-      <button onClick={handleDownload} style={{ marginLeft: "10px" }}>Download PDF</button>
-
+      {/* <button onClick={handleDownload} style={{ marginLeft: "10px" }}>Download PDF</button> */}
+      {pdfUrl && <a href={pdfUrl} download={`${pdfData?.vehicle_no}.pdf`}  onClick={handleDownload} target="_blank" style={{ marginLeft: "10px" }}>
+        Download PDF
+        </a>}
       {pdfUrl && (
         <iframe
           src={pdfUrl}
