@@ -140,6 +140,16 @@ const VehicleCheckForm = () => {
             value={formData.required_time}
             onChange={handleFormChange}
           />
+
+          <label style={{ fontSize: "14px", marginBottom: "5px" }}>Total Distance (in Kms)</label>
+          <input
+            type="text"
+            placeholder="total distance"
+            name="total_distance"
+            value={formData.total_distance}
+            onChange={handleFormChange}
+          />
+
           <label style={{ fontSize: "14px", marginBottom: "5px" }}>Quantity (MT)</label>
           <input
             type="number"
@@ -170,6 +180,14 @@ const VehicleCheckForm = () => {
             placeholder="Driver License No"
             name="driver_license_no"
             value={formData.driver_license_no}
+            onChange={handleFormChange}
+          />
+          <label style={{ fontSize: "14px", marginBottom: "5px" }}>Bulk Permit No</label>
+          <input
+            type="text"
+            placeholder="Bulk Permit No"
+            name="bulk_permit_no"
+            value={formData.bulk_permit_no}
             onChange={handleFormChange}
           />
 
