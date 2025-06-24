@@ -64,10 +64,22 @@ function padValue(value) {
       + ("00" + date.getMinutes()).slice(-2) 
       + ":" + ("00" + date.getSeconds()).slice(-2); 
 
+    
+  let dispatch_date_time = ("00" + date.getDate()).slice(-2) 
+      + "-" + ("00" + (date.getMonth() + 1)).slice(-2) 
+      + "-" + date.getFullYear() + " " 
+      + ("00" + date.getHours()).slice(-2) + ":" 
+      + ("00" + date.getMinutes()).slice(-2) 
+
+  const getDispatchQRCodeValue = () => {
+    let dispatchQRCodeValue = `${pdfData?.serial_no},${pdfData?.dispatch_slip_no},${pdfData?.mine_code},${dispatch_date_time},${pdfData?.total_distance}kms,${pdfData?.required_time}hrs, ${pdfData?.mineral_name}(${pdfData?.quantity}MT), ${pdfData?.vehicle_no}, ${pdfData?.destination_address}`;
+    return dispatchQRCodeValue;
+  }
+
   const dispatchQRCode = renderToString(<QRCode
     // size={256}
     style={{ height: "60",width: "60" }}
-    value={pdfData?.dispatch_slip_no ? pdfData?.dispatch_slip_no : ""}
+    value={getDispatchQRCodeValue()}
     viewBox={"0 0 256 256"}
   />);
 
