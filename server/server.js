@@ -480,7 +480,7 @@ app.get('/get_signatures/:mine_id', (req, res) => {
 
 app.post('/dispatch', (req, res) => {
     const { dispatch_slip_no, serial_no, travelling_date, required_time, quantity, vehicleNumber, mine_id } = req.body;
-    let query = `UPDATE permit_details_mine SET orderStatus=1, dispatch_slip_no=?, serial_no=?, travelling_date=?, required_time=?, quantity=? WHERE mine_id=? and vehicle_no=?`;
+    let query = `UPDATE permit_details_mine SET orderStatus=1, dispatch_slip_no=?, serial_no=?, travelling_date=?, required_time=?, quantity=? WHERE mine_id=? and vehicle_no=? and orderStatus=0 limit 1`;
     let values = [dispatch_slip_no, serial_no, travelling_date, required_time, quantity, mine_id, vehicleNumber]
 
     db.query(query, values, (err) => {
