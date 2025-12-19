@@ -41,7 +41,11 @@ const PdfGenerator = ({dispatch, pdfData}) => {
 
     if (iHourCheck >= 12) {
         sAMPM = "pm";
-        sHour = iHourCheck - 12;
+        if (sHour > 12) {
+            sHour = iHourCheck - 12;
+        }else {
+            sHour = iHourCheck;
+        }
     }
     else if (iHourCheck === 0) {
         sHour = "12";
