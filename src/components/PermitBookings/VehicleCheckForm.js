@@ -53,7 +53,7 @@ const VehicleCheckForm = () => {
     e.preventDefault();
 
     // Validate form data before showing PDF
-    if (!formData.dispatch_slip_no || !formData.serial_no || !formData.travelling_date || !formData.required_time || !formData.quantity) {
+    if (!formData.dispatch_slip_no || !formData.serial_no || !formData.travelling_date || !formData.required_time || !formData.quantity || !formData.destination_address || !formData.via_route) {
 
       alert("Please fill in all fields before proceeding.");
 
@@ -190,7 +190,22 @@ const VehicleCheckForm = () => {
             value={formData.bulk_permit_no}
             onChange={handleFormChange}
           />
-
+          <label style={{ fontSize: "14px", marginBottom: "5px" }}>Destination Address</label>
+          <input
+            type="text"
+            placeholder="Destination Address"
+            name="destination_address"
+            value={formData.destination_address}
+            onChange={handleFormChange}
+          />
+          <label style={{ fontSize: "14px", marginBottom: "5px" }}>Via Route</label>
+          <input
+            type="text"
+            placeholder="Via Route"
+            name="via_route"
+            value={formData.via_route}
+            onChange={handleFormChange}
+          />
           <button type="submit" style={{ padding: "8px" }} onClick={handleShowPdf}>Submit</button>
         </form>
       </div>
