@@ -479,9 +479,9 @@ app.get('/get_signatures/:mine_id', (req, res) => {
 })
 
 app.post('/dispatch', (req, res) => {
-    const { dispatch_slip_no, serial_no, travelling_date, required_time, quantity, vehicleNumber, mine_id, destination_address, via_route } = req.body;
-    let query = `UPDATE permit_details_mine SET orderStatus=1, dispatch_slip_no=?, serial_no=?, travelling_date=?, required_time=?, quantity=?, destination_address=?, via_route=? WHERE mine_id=? and vehicle_no=? and orderStatus=0 limit 1`;
-    let values = [dispatch_slip_no, serial_no, travelling_date, required_time, quantity, destination_address, via_route, mine_id, vehicleNumber]
+    const { dispatch_slip_no, serial_no, travelling_date, required_time, quantity, vehicleNumber, mine_id, destination_address, via_route, driver_license_no, driver_name, driver_ph_no, permit_id } = req.body;
+    let query = `UPDATE permit_details_mine SET orderStatus=1, dispatch_slip_no=?, serial_no=?, travelling_date=?, required_time=?, quantity=?, destination_address=?, via_route=?, driver_license_no=?, driver_name=?, driver_ph_no=? WHERE mine_id=? and vehicle_no=? and permit_id=? limit 1`;
+    let values = [dispatch_slip_no, serial_no, travelling_date, required_time, quantity, destination_address, via_route, driver_license_no, driver_name, driver_ph_no, mine_id, vehicleNumber, permit_id]
 
     db.query(query, values, (err) => {
         if(err){

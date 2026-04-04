@@ -453,7 +453,7 @@ function padValue(value) {
 </html>
   `;
 
-  const generatePdf = () => {
+  const generatePdf = async () => {
     const element = document.createElement("div");
     element.innerHTML = htmlContent;
 
@@ -471,6 +471,13 @@ function padValue(value) {
         const url = URL.createObjectURL(blob);
         setPdfUrl(url);
       });
+      
+      await dispatch().then(() => {
+      alert("PDF generated successfully. Click on Download PDF to download the file.");
+       }).catch((error) => {
+      alert("Error downloading PDF" )
+       });
+
   };
 
   const handleDownload = async() => {
