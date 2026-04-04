@@ -76,7 +76,11 @@ function padValue(value) {
       + ("00" + date.getMinutes()).slice(-2) 
 
   const getDispatchQRCodeValue = () => {
-    let dispatchQRCodeValue = `${pdfData?.serial_no},${pdfData?.dispatch_slip_no},${pdfData?.mine_code},${dispatch_date_time},${pdfData?.total_distance}kms,${pdfData?.required_time}hrs, ${pdfData?.mineral_name}(${pdfData?.quantity}MT), ${pdfData?.vehicle_no}, ${pdfData?.destination_address}`;
+
+    // For QR code timing
+    let travelling_date = pdfData?.travelling_date ? formatDate(pdfData?.travelling_date) : "";
+
+    let dispatchQRCodeValue = `${pdfData?.serial_no},${pdfData?.dispatch_slip_no},${pdfData?.mine_code},${travelling_date},${pdfData?.total_distance}kms,${pdfData?.required_time}hrs, ${pdfData?.mineral_name}(${pdfData?.quantity}MT), ${pdfData?.vehicle_no}, ${pdfData?.destination_address}`;
     return dispatchQRCodeValue;
   }
 
