@@ -473,9 +473,9 @@ function padValue(value) {
       });
       
       await dispatch().then(() => {
-      alert("PDF generated successfully. Click on Download PDF to download the file.");
+      console.log("PDF generated successfully. Click on Download PDF to download the file.");
        }).catch((error) => {
-      alert("Error downloading PDF" )
+      console.error("Error downloading PDF", error);
        });
 
   };
