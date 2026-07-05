@@ -36,7 +36,7 @@ const TransitDashboard = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login')
+      navigate('/transitlogin')
     }
     else {
       if (user.role == 100) {

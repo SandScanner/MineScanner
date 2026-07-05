@@ -40,6 +40,9 @@ function App() {
           theme="light"
         />
         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/transitlogin" element={<TransitLogin />} />
+
           <Route element={<PrivateRoute />}>
             
             <Route
@@ -117,8 +120,7 @@ function App() {
               }
             />
           </Route>
-          <Route path="/login" Component={Login} />
-          <Route path="/transitlogin" Component={TransitLogin} />
+          
         </Routes>
       </div>
     </AxiosInterceptor>

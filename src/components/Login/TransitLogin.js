@@ -15,7 +15,7 @@ const TransitLogin = (props) => {
 
   useEffect(() => {
     if (auth && Object.keys(auth).length !== 0) {
-      navigate("/TransitDashboard");
+      navigate("/transitDashboard");
     }
   });
 
