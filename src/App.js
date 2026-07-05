@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminLayout from "./Layouts/AdminLayout";
 import PrivateRoute from "./utils/PrivateRoute";
 import Login from "./components/Login/Login";
+import TransitLogin from "./components/Login/TransitLogin";
 import Dashboard from "./components/dashboard/Dashboard";
 import { AxiosInterceptor } from "./interceptor/interceptor";
 import InfiniteScrollComponent from "./components/ScrollableComponent/InfiniteScrollComponent";
@@ -14,6 +15,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import MineDashboard from "./components/MineDashboard/MineDashboard";
 import MineUpload from "./components/MineUploader/MineUpload";
+import TransitDashboard from "./components/TransitDashboard/TransitDashboard";
+import TransitUpload from "./components/TransitUploader/TransitUpload";
 
 function App() {
 
@@ -84,6 +87,27 @@ function App() {
               }
             />
 
+
+            <Route
+              path="/transitDashboard"
+              element={
+                <AdminLayout>
+                  <TransitDashboard />
+                </AdminLayout>
+              }
+            />
+
+          <Route
+              path="/transitDashboard/transitupload"
+              element={
+                <AdminLayout>
+                  <TransitUpload />
+                </AdminLayout>
+              }
+            />
+
+
+
             <Route
               path="/logout"
               element={
@@ -94,6 +118,7 @@ function App() {
             />
           </Route>
           <Route path="/login" Component={Login} />
+          <Route path="/transitlogin" Component={TransitLogin} />
         </Routes>
       </div>
     </AxiosInterceptor>

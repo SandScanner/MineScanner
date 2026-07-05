@@ -16,5 +16,10 @@ export const SidebarData = [
     title: "Mine Dashboard",
     icon: <DashboardIcon />,
     link: "/mineDashboard",
+  },
+  {
+    title: "Transit Dashboard",
+    icon: <DashboardIcon />,
+    link: "/transitDashboard",
   }
 ];

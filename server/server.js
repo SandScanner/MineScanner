@@ -493,4 +493,139 @@ app.post('/dispatch', (req, res) => {
 
 /************************End of Mine Code********************************** */
 
+
+/**************************** TransitPass Code ********************************************/
+
+app.post('/transit_login', (req, res) => {
+    const {username, password} = req.body;
+
+    let query = `select userId, username, role, transitId, (SELECT concat(village,'_',taluk,'_',district) as transitName FROM transit_details WHERE transitId=transit_credentials.transitId) AS transitName from transit_credentials where username=? and password=?`;
+    let values = [username, password]
+
+    db.query(query, values, (err, row) => {
+        if(err){
+            throw err;
+        }
+        if(row.length){
+            res.send(row[0])
+        }else{
+            res.sendStatus(204);
+        }
+    })
+})
+
+
+app.post('/transit_list', (req, res) => {
+    const {userId} = req.body;
+
+    if (!userId) {
+        return res.status(400).send('User ID is required.');
+    }
+
+    if (userId !== 1) {
+        return res.status(403).send('Access denied. Only admin can access this route.');
+    }
+
+    let query = `SELECT transitId, register_name, village FROM transit_details`;
+    let values = [userId]
+
+    db.query(query, values, (err, row) => {
+        if(err){
+            throw err;
+        }
+        if(row.length){
+            res.send(row)
+        }else{
+            res.sendStatus(204);
+        }
+    })
+})
+
+
+app.post('/transitVehicleRegistration', (req, res) => {
+    const { vehicleData, transitId }  = req.body;
+    let sqlstatement = '';
+    let TABLE_NAME = 'permit_details_transit';
+
+    /* date time logic */
+
+    let date_time = new Date().toISOString()
+    
+
+    /*********************/
+
+    vehicleData.map(async(x) => {
+        let keylist = "("
+        let valuelist = "("
+        let firstPair = true
+        for (const [key, value] of Object.entries(x)){
+        if (!firstPair){
+            keylist += ", "
+            valuelist += ", "
+        }
+        firstPair = false
+        keylist += key
+        if(typeof(value) == 'string')
+            valuelist += "'" + value + "'"
+        else
+            valuelist += value
+        }
+        keylist += ", transitId, orderStatus, dateOfBooking)";
+        valuelist += `, ${transitId}, 0, NOW())`;
+        sqlstatement = "INSERT INTO " + TABLE_NAME + " " + keylist + " VALUES " + valuelist + ";"
+        await db.query(sqlstatement);
+        console.log(sqlstatement)
+        console.log("success")
+    });
+    
+    res.send('success');
+    
+})
+
+app.post('/transit_vehicle_check', (req, res) => {
+
+    const { vehicleNumber, transitId, userId } = req.body;
+    let query = `SELECT * FROM permit_details_transit as pm, (select * from transit_details as md where md.transitId=?) as details WHERE vehicle_no=? and orderStatus=0 and pm.transitId=? order by dateOfBooking desc`;
+    let values = [transitId, vehicleNumber, transitId]
+
+    db.query(query, values, (err, row) => {
+        if(err){
+            throw err;
+        }
+        if(row.length){
+            res.send(row[0])
+        }else{
+            res.sendStatus(404);
+        }
+    })
+
+})
+
+app.get('/get_transit_signatures/:transitId', (req, res) => {
+    const { transitId } = req.body;
+
+    res.sendFile(path.join(__dirname, `public/images/transit_signatures/sign_${req.params['transitId']}.png`), (err) => {
+        if (err) {
+            console.error(err);
+            res.status(err.status).end();
+        }
+    });
+    
+})
+
+app.post('/transit_dispatch', (req, res) => {
+    const { name_of_vehicle_driver, name_of_purchaser, address_of_purchaser, time_start, time_end, approx_distance, transitId, quantity, bulk_transit_pass_no, security_paper_sno, transit_pass_sno, destination_and_state, transit_permit_id, vehicle_no } = req.body;
+    let query = `UPDATE permit_details_transit SET orderStatus=1, name_of_vehicle_driver=?, name_of_purchaser=?, address_of_purchaser=?, time_start=?, time_end=?, approx_distance=?, quantity=?, bulk_transit_pass_no=?, security_paper_sno=?, transit_pass_sno=? WHERE transitId=? and vehicle_no=? and transit_permit_id=? limit 1`;
+    let values = [name_of_vehicle_driver, name_of_purchaser, address_of_purchaser, time_start, time_end, approx_distance, quantity, bulk_transit_pass_no, security_paper_sno, transit_pass_sno, transitId, vehicle_no, transit_permit_id]
+
+    db.query(query, values, (err) => {
+        if(err){
+            throw err;
+        }
+        res.sendStatus(200);
+    })
+})
+
+/**************************** End of TransitPass Code  *************************************/
+
 app.listen(3001, () => {console.log("Server is Running...")})
