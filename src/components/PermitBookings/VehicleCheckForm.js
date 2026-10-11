@@ -206,6 +206,14 @@ const VehicleCheckForm = () => {
             value={formData.via_route}
             onChange={handleFormChange}
           />
+          <label style={{ fontSize: "14px", marginBottom: "5px" }}>Delivered To</label>
+          <input
+            type="text"
+            placeholder="Delivered To"
+            name="delivered_to"
+            value={formData.delivered_to}
+            onChange={handleFormChange}
+          />
           <button type="submit" style={{ padding: "8px" }} onClick={handleShowPdf}>Submit</button>
         </form>
       </div>

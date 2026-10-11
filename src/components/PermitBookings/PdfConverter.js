@@ -80,7 +80,7 @@ function padValue(value) {
     // For QR code timing
     let travelling_date = pdfData?.travelling_date ? formatDate(pdfData?.travelling_date) : "";
 
-    let dispatchQRCodeValue = `${pdfData?.serial_no},${pdfData?.dispatch_slip_no},${pdfData?.mine_code},${travelling_date},${pdfData?.total_distance}kms,${pdfData?.required_time}hrs, ${pdfData?.mineral_name}(${pdfData?.quantity}MT), ${pdfData?.vehicle_no}, ${pdfData?.destination_address}`;
+    let dispatchQRCodeValue = `${pdfData?.serial_no},${pdfData?.dispatch_slip_no},${pdfData?.mine_code},${travelling_date},${pdfData?.total_distance}kms,${pdfData?.required_time}hrs, ${pdfData?.mineral_name}(${pdfData?.quantity}.00MT), ${pdfData?.vehicle_no}, ${pdfData?.destination_address}`;
     return dispatchQRCodeValue;
   }
 
@@ -300,7 +300,7 @@ function padValue(value) {
 
       <tr>
          <td>Quantity(in MT):</td>
-        <td>${pdfData?.quantity}</td>
+        <td>${pdfData?.quantity}.00</td>
         <td>Driver Name:</td>
         <td>${pdfData?.driver_name}</td>
       </tr>
@@ -423,7 +423,7 @@ function padValue(value) {
 
       <tr>
          <td>Quantity(in MT):</td>
-        <td>${pdfData?.quantity}</td>
+        <td>${pdfData?.quantity}.00</td>
         <td>Driver Name:</td>
         <td>${pdfData?.driver_name}</td>
       </tr>
