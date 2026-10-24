@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatch Slip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            width: 794px;
+            /* A4 width in pixels at 96 DPI */
+            height: 1123px;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        .serial_no {
+            font-weight: 400;
+        }
+
+        .container {
+            /* // height: 140.5mm; */
+            padding-left: 15mm;
+            padding-right: 15mm;
+            padding-top: 10mm;
+            /* // padding-bottom: 5mm; */
+            box-sizing: border-box;
+            position: relative;
+            /* // margin-top: 40px; */
+            margin-left: auto;
+            margin-right: auto;
+            width: 794px;
+            /* A4 width in pixels at 96 DPI */
+        }
+
+        .container1 {
+            height: 140.5mm;
+            padding-left: 15mm;
+            padding-right: 15mm;
+            padding-top: 15mm;
+            padding-bottom: 5mm;
+            box-sizing: border-box;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            width: 794px;
+            /* A4 width in pixels at 96 DPI */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            width: 90%;
+        }
+
+        .header1 {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 0px;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            bottom: 25px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+        }
+
+        th,
+        td {
+            padding: 3px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .qr-code {
+            position: absolute;
+            top: 35px;
+            right: 57px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .qr-code2 {
+            position: absolute;
+            top: 17px;
+            right: 57px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .signature-container {
+            border: 1px solid #000;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature img {
+            height: 30px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <br />
+    <br />
+    <br />
+    <div class="container">
+
+        <!-- <img src="${Qrsample}" alt="QR Code" class="qr-code"> -->
+        <div class="qr-code">
+            ${dispatchQRCode}
+        </div>
+
+        <div class="header">
+
+            <!-- <span>sample</span> -->
+
+            <span style="margin-left: 300px; margin-right: auto;">Original</span>
+            <span style="float: right;">Date & Time Of Dispatch: ${dispatch_time}</span>
+
+        </div>
+
+        <table>
+            <tr>
+                <td>Registration Number: </td>
+                <td>TNPDK/08/2025</td>
+                <td>Location of the Stockyard: </td>
+                <td>PDKCR0066</td>
+            </tr>
+            <tr>
+                <td rowspan="3" colspan="2">Name and Address of the Register Holder : 
+                    <p>Ravi M</p>
+                    <p>No.964, 
+                        Sivapatti village,
+                        Kulathur Taluka,
+                        Sipcot post ,
+                        Pudukkottai</p>
+                </td>
+                
+                <!-- <td>${pdfData?.lessee_name}</td>
+        <td>District Name:</td>
+        <td>${pdfData?.district}</td> -->
+                <td>SF.No / Extent:</td>
+                <td>${pdfData?.sf_no}</td>
+            </tr>
+            <tr>
+                <td>Village:</td>
+                <td>${pdfData?.village}</td>
+            </tr>
+            <tr style="height: 20px;">
+                <!-- <td colspan="2" rowspan="3">
+          ${pdfData?.lessee_address}
+        </td> -->
+                <td>Taluk :</td>
+                <td>${pdfData?.taluk}</td>
+            </tr>
+
+
+            <tr>
+
+            </tr>
+
+
+            <tr>
+                <td>Name of Mineral / Mineral Products : </td>
+                <td>${pdfData?.mineral_name}</td>
+                <td>District :</td>
+                <td>${pdfData?.district}</td>
+            </tr>
+
+            <tr>
+                <td>Quantity(in MT) :</td>
+                <td>24</td>
+                <td>Validity of Stockyard : </td>
+                <td>30-05-2025 - 29-05-2035</td>
+            </tr>
+
+            <tr>
+                <td>Bulk Transit Pass No :</td>
+                <td>PDKSY250000861</td>
+                <td>Security Paper Serial No : </td>
+                <td>TSPS00775734</td>
+            </tr>
+            <tr>
+                <td>Vehicle No : </td>
+                <td>TN55BV6815</td>
+                <td>Transit Pass Serial No : </td>
+                <td>PDK000000014312/2025</td>
+            </tr>
+            <tr>
+                <td>Approximate Distance : </td>
+                <td>35Kms</td>
+                <td>Name of the Purchaser : </td>
+                <td>M M R</td>
+            </tr>
+            <tr>
+                <td>Time Start : </td>
+                <td>26-11-2025 22:10</td>
+                <td colspan="2" rowspan="3">Address of the Purchaser : 
+                    PUDUKKOTTAI
+                </td>
+            </tr>
+
+            <tr>
+                <td>Time End : </td>
+                <td>27-11-2025 00:10</td>
+                
+            </tr>
+            <tr>
+                <td>Name of Vehicle Driver : </td>
+                <td>MOHAN K</td>
+            </tr>
+            <tr style="height: 30px;">
+                <td>Destination and State :</td>
+                <td> , Tamilnadu</td>
+                <td>Signature of AD / DD </td>
+                <td>${pdfData?.via_route}</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Driver Signature :</td>
+                <td>sign image</td>
+                <td>Registree Signature : </td>
+                <td>sign image</td>
+            </tr>
+            
+        </table>
+
+
+    </div>
+
+    <div class="container">
+
+        <!-- <img src="${Qrsample}" alt="QR Code" class="qr-code"> -->
+        <div class="qr-code">
+            ${dispatchQRCode}
+             <!-- <img src="qr-sample.png" alt="QR Code" class="qr-code"> -->
+        </div>
+
+        <div class="header">
+
+            <!-- <span>sample</span> -->
+
+            <span style="margin-left: 300px; margin-right: auto;">Duplicate</span>
+            <span style="float: right;">Date & Time Of Dispatch: ${dispatch_time}</span>
+
+        </div>
+
+        <table>
+            <tr>
+                <td>Registration Number: </td>
+                <td>TNPDK/08/2025</td>
+                <td>Location of the Stockyard: </td>
+                <td>PDKCR0066</td>
+            </tr>
+            <tr>
+                <td rowspan="3" colspan="2">Name and Address of the Register Holder : </td>
+                <!-- <td>${pdfData?.lessee_name}</td>
+        <td>District Name:</td>
+        <td>${pdfData?.district}</td> -->
+                <td>SF.No / Extent:</td>
+                <td>${pdfData?.sf_no}</td>
+            </tr>
+            <tr>
+                <td>Village:</td>
+                <td>${pdfData?.village}</td>
+            </tr>
+            <tr style="height: 20px;">
+                <!-- <td colspan="2" rowspan="3">
+          ${pdfData?.lessee_address}
+        </td> -->
+                <td>Taluk :</td>
+                <td>${pdfData?.taluk}</td>
+            </tr>
+
+
+            <tr>
+
+            </tr>
+
+
+            <tr>
+                <td>Name of Mineral / Mineral Products : </td>
+                <td>${pdfData?.mineral_name}</td>
+                <td>District :</td>
+                <td>${pdfData?.district}</td>
+            </tr>
+
+            <tr>
+                <td>Quantity(in MT) :</td>
+                <td>24</td>
+                <td>Validity of Stockyard : </td>
+                <td>30-05-2025 - 29-05-2035</td>
+            </tr>
+
+            <tr>
+                <td>Bulk Transit Pass No :</td>
+                <td>PDKSY250000861</td>
+                <td>Security Paper Serial No : </td>
+                <td>TSPS00775734</td>
+            </tr>
+            <tr>
+                <td>Vehicle No : </td>
+                <td>TN55BV6815</td>
+                <td>Transit Pass Serial No : </td>
+                <td>PDK000000014312/2025</td>
+            </tr>
+            <tr>
+                <td>Approximate Distance : </td>
+                <td>35Kms</td>
+                <td>Name of the Purchaser : </td>
+                <td>M M R</td>
+            </tr>
+            <tr>
+                <td>Time Start : </td>
+                <td>26-11-2025 22:10</td>
+                <td colspan="2" rowspan="3">Address of the Purchaser : 
+                    PUDUKKOTTAI
+                </td>
+            </tr>
+
+            <tr>
+                <td>Time End : </td>
+                <td>27-11-2025 00:10</td>
+                
+            </tr>
+            <tr>
+                <td>Name of Vehicle Driver : </td>
+                <td>MOHAN K</td>
+            </tr>
+            <tr style="height: 30px;">
+                <td>Destination and State :</td>
+                <td> , Tamilnadu</td>
+                <td>Signature of AD / DD </td>
+                <td>${pdfData?.via_route}</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Driver Signature :</td>
+                <td>sign image</td>
+                <td>Registree Signature : </td>
+                <td>sign image</td>
+            </tr>
+            
+        </table>
+
+
+    </div>
+
+    
+</body>
+
+</html>
