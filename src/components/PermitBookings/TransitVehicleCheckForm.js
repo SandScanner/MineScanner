@@ -48,6 +48,11 @@ const TransitVehicleCheckForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleChangeSelect = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value})
+  };
+
+
   const handleShowPdf = (e) => {
     e.preventDefault();
 
@@ -201,6 +206,14 @@ const TransitVehicleCheckForm = () => {
             value={formData.destination_and_state}
             onChange={handleFormChange}
           />
+
+          <label style={{ fontSize: "14px", marginBottom: "5px" }}>Name of Mineral</label>
+          <select name="name_of_mineral" defaultValue={formData?.name_of_mineral} value={formData?.name_of_mineral} onChange={handleChangeSelect}>
+          <option value="Rough Stone / M-sand">M-sand</option>
+              <option value="Rough Stone / Jelly">Jelly</option>
+              <option value="Rough Stone / Dust">Dust</option>
+              <option value="Rough Stone / Wet Mix">Wet Mix</option>
+          </select>
           
           <button type="submit" style={{ padding: "8px" }} onClick={handleShowPdf}>Submit</button>
         </form>

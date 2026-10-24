@@ -614,9 +614,9 @@ app.get('/get_transit_signatures/:transitId', (req, res) => {
 })
 
 app.post('/transit_dispatch', (req, res) => {
-    const { name_of_vehicle_driver, name_of_purchaser, address_of_purchaser, time_start, time_end, approx_distance, transitId, quantity, bulk_transit_pass_no, security_paper_sno, transit_pass_sno, destination_and_state, transit_permit_id, vehicle_no } = req.body;
-    let query = `UPDATE permit_details_transit SET orderStatus=1, name_of_vehicle_driver=?, name_of_purchaser=?, address_of_purchaser=?, time_start=?, time_end=?, approx_distance=?, quantity=?, bulk_transit_pass_no=?, security_paper_sno=?, transit_pass_sno=? WHERE transitId=? and vehicle_no=? and transit_permit_id=? limit 1`;
-    let values = [name_of_vehicle_driver, name_of_purchaser, address_of_purchaser, time_start, time_end, approx_distance, quantity, bulk_transit_pass_no, security_paper_sno, transit_pass_sno, transitId, vehicle_no, transit_permit_id]
+    const { name_of_vehicle_driver, name_of_purchaser, address_of_purchaser, time_start, time_end, approx_distance, transitId, quantity, bulk_transit_pass_no, security_paper_sno, transit_pass_sno, destination_and_state, transit_permit_id, vehicle_no, name_of_mineral } = req.body;
+    let query = `UPDATE permit_details_transit SET orderStatus=1, name_of_vehicle_driver=?, name_of_purchaser=?, address_of_purchaser=?, time_start=?, time_end=?, approx_distance=?, quantity=?, bulk_transit_pass_no=?, security_paper_sno=?, transit_pass_sno=?, name_of_mineral=? WHERE transitId=? and vehicle_no=? and transit_permit_id=? limit 1`;
+    let values = [name_of_vehicle_driver, name_of_purchaser, address_of_purchaser, time_start, time_end, approx_distance, quantity, bulk_transit_pass_no, security_paper_sno, transit_pass_sno, name_of_mineral, transitId, vehicle_no, transit_permit_id]
 
     db.query(query, values, (err) => {
         if(err){
