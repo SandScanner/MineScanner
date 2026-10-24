@@ -223,6 +223,7 @@ const VehicleCheckForm = () => {
           <select  value={formData?.vehicke_type} defaultValue={formData?.vehicle_type} onChange={handleChangeSelect} name="vehicle_type">
              <option value="Taurus 25">Taurus 25</option>
               <option value="Tauras 18">Taurus 18</option>
+              <option value="Tauras 19">Taurus 19</option>
               <option value="Lorry">Lorry</option>
           </select>
           <button type="submit" style={{ padding: "8px" }} onClick={handleShowPdf}>Submit</button>
